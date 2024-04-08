@@ -1,3 +1,4 @@
+const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 
 const usersSchema = mongoose.Schema({
@@ -29,10 +30,12 @@ const usersSchema = mongoose.Schema({
     },
     wishlistID: {
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         ref: "Wishlist"
     },
     cartID: {
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         ref: "Cart"
     },
     Admin: {
@@ -40,10 +43,10 @@ const usersSchema = mongoose.Schema({
         required: true
     },
     createdAt: {
-        type: Date,
+        type: Timestamp,
     },
     updatedAt: {
-        type: Date,
+        type: Timestamp,
     }
 });
 
