@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-mongoose.connect("process.env.DATABASE_URI")
+mongoose.connect(process.env.DATABASE_URI)
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to DB'))
