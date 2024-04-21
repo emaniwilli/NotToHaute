@@ -1,0 +1,221 @@
+.body {
+    color: #432818;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/*Product Image styling*/
+.product-visuals {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.img-view {
+    width: 500px;
+    height: 700px;
+    position: relative;
+    background-image: url('../public/images/Balmain\ mini\ monogram\ coat\ 1.png');
+    background-size: cover;
+}
+
+.product-images {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    height: 10px;
+    padding: 5px;
+}
+
+.product-images img{
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.product-images img.active {
+    opacity: 0.5;
+}
+
+/*Product detail styling*/
+.product-details {
+    width: 60%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.product-details .product-brand {
+    text-transform: capitalize;
+    font-size: 30px;
+}
+
+.product-details .product-description-short {
+    font-size: 25px;
+    line-height: 30px;
+    height: auto;
+    margin: 15px 0 15px;
+}
+
+.product-price {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.product-size-heading {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 30px 0 10px;
+    font-weight: 300;
+}
+
+.size-radio {
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid #D4B134;
+    margin: 10px;
+    margin-left: 0;
+    line-height: 35px;
+    text-transform: uppercase;
+    color: #432818;
+    cursor: pointer;
+}
+
+.size-radio.check {
+    background: #D4B134;
+    color: #fff;
+}
+
+.product-actions {
+    display: flex;
+}
+
+.btn {
+    width: 30%;
+    padding: 20px;
+    background: none;
+    border: 1px solid #99582A;
+    color: #99582A;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
+.cart-btn {
+    margin-right: 2%;
+    background: #99582A;
+    color: #fff;
+}
+
+.prod-description{
+    width: 575px;
+    overflow-x: auto;
+    overflow-y: auto;
+    text-transform: capitalize;
+}
+
+.heading{
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.long-description{
+    color: #383838;
+    line-height: 25px;
+}
+
+/*Product card styling*/
+.product {
+    position: relative;
+    overflow: auto;
+    padding: 20px 0;
+}
+
+.product-category {
+    padding: 0 10px;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-transform: capitalize;
+}
+
+.product-display {
+    padding: 0 7vw;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.product-display::-webkit-scrollbar {
+    display: none;
+}
+
+.product-card {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 300px;
+    margin-right: 40px;
+}
+
+.product-img {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-tn {
+    width: 100%;
+    height: 350px;
+    object-fit:contain;
+}
+
+.pc-wishlist{
+    position: absolute;
+    top: 1px;
+    right: 1%;
+    padding: 10px;
+    width: 20%;
+    border: #432818;
+    transition: 0.5s;
+    cursor: pointer;
+    background: none;
+}
+
+.product-card-details{
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+}
+
+.product-card-brand{
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.product-card-description-short{
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    overflow: hidden;
+    text-transform: capitalize;
+    margin: 5px 0;
+}
+
+.product-card-price{
+    font-weight: 300;
+    font-size: 14px;
+}
