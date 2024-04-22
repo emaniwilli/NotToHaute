@@ -28,7 +28,8 @@ app.post("/login", (req, res) => {
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         Email: req.body.Email,
-        Password: req.body.Password
+        Password: req.body.Password,
+        Admin: false
     });
     newUser.save();
     res.redirect('/')
