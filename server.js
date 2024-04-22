@@ -23,8 +23,8 @@ app.get("/login", (req, res) => {
     res.sendFile('public/login.html' , { root : __dirname });
 });
 
-/*app.post("/login", (req, res) => {
-    let newUser = new Users ({
+app.post("/login", (req, res) => {
+    let newUser = new users ({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         Email: req.body.Email,
@@ -32,6 +32,6 @@ app.get("/login", (req, res) => {
     });
     newUser.save();
     res.redirect('/')
-})*/
+})
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on port 3000'));
