@@ -32,7 +32,11 @@ app.post("/login", (req, res) => {
         Admin: false
     });
     newUser.save();
-    res.redirect('/')
+    res.redirect('/user-dashboard.html')
 })
+
+app.get("/user-dashboard", (req, res) => {
+    res.sendFile('public/user-dashboard.html' , { root : __dirname });
+});
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on port 3000'));
