@@ -32,7 +32,7 @@ app.post("/login", (req, res) => {
         Admin: false
     });
     newUser.save();
-    res.redirect('/user-dashboard.html')
+    res.redirect('/user-dashboard')
 })
 
 app.get("/user-dashboard", (req, res) => {
