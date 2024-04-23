@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
     res.sendFile('public/index.html' , { root : __dirname });
 });
 
-//login and signup route
+//user route
 app.get("/login", (req, res) => {
     res.sendFile('public/login.html' , { root : __dirname });
 });
@@ -35,6 +35,7 @@ app.post("/login", (req, res) => {
     res.redirect('/user-dashboard')
 })
 
+//user route
 app.get("/user-dashboard", (req, res) => {
     res.sendFile('public/user-dashboard.html' , { root : __dirname });
 });
