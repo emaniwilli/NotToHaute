@@ -1,40 +1,39 @@
 const mongoose = require('mongoose');
 
-const wishlistSchema = mongoose.Schema({
-    WishlistQuantity: {
+const paymentSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    UserID: {
         type: String,
         required: true
     },
-    ProductID: {
-        type: Array,
-        required: true
-    },
-    ThumbnailImage: {
+    NameOnCard: {
         type: String,
         required: true
     },
-    BrandName: {
+    CardNumber: {
         type: String,
         required: true
     },
-    ProductName: {
+    Expiration: {
         type: String,
         required: true
     },
-    ProductPrice: {
+    CVV: {
+        type: String,
+        required: true
+    },
+    ZipCode: {
         type: String,
         required:true
     },
-    ProductColor: {
-        type: String,
+    CreatedAt: {
+        type:Date,
         required: true
     },
-    createdAt: {
-        type:Date
-    },
-    updatedAt: {
-        type: Date
+    UpdatedAt: {
+        type: Date,
+        required: true
     }
 });
 
-module.exports = mongoose.model('Wishlist', wishlistSchema);
+module.exports = mongoose.model('Payment', paymentSchema);

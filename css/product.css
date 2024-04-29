@@ -1,0 +1,134 @@
+.body {
+    color: #432818;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/*Product Image styling*/
+.product-visuals {
+    width: 100%;
+    padding: 40px 10vw;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.img-view {
+    width: 700px;
+    height: 700px;
+    position: relative;
+    background-image: image('public/Balmain\ mini\ monogram\ coat\ 1.png');
+    background-size: cover;
+}
+
+.product-images {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    height: 10px;
+    padding: 5px;
+}
+
+.product-images img{
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.product-images img.active {
+    opacity: 0.5;
+}
+
+/*Product detail styling*/
+.product-details {
+    width: 50%;
+    padding: 20px;
+}
+
+.product-details .product-brand {
+    text-transform: capitalize;
+    font-size: 30px;
+}
+
+.product-details .product-description-short {
+    font-size: 25px;
+    line-height: 30px;
+    height: auto;
+    margin: 15px 0 30px;
+}
+
+.product-price {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.product-size-heading {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 30px 0 10px;
+    font-weight: 300;
+}
+
+.size-radio {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid #D4B134;
+    border-radius: 50%;
+    margin: 10px;
+    margin-left: 0;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: #432818;
+    cursor: pointer;
+}
+
+.size-radio.check {
+    background: #D4B134;
+    color: #fff;
+}
+
+.product-actions {
+    display: flex;
+}
+
+.btn {
+    width: 20%;
+    padding: 20px;
+    border-radius: 5px;
+    background: none;
+    border: 1px solid #99582A;
+    color: #99582A;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
+.cart-btn {
+    margin-right: 2%;
+    background: #99582A;
+    color: #fff;
+}
+
+.prod-description{
+    padding: 40px 10vw;
+    text-transform: capitalize;
+}
+
+.heading{
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.long-description{
+    color: #383838;
+    line-height: 25px;
+}

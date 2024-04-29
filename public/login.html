@@ -89,7 +89,7 @@
                 <h4 class="main-heading">
                     Create An Account!
                 </h4>
-                <form class="form-container" method="post" action="/login">
+                <form class="form-container" method="post" action="/signup">
                     <label>First Name:</label><br>
                     <input type="text" autocomplete="off" name="FirstName" id="FirstName"><br>
                     <label>Last Name:</label><br>
@@ -109,11 +109,11 @@
                 <h4 class="main-heading">
                     Already have an account? <br> Login!
                 </h4>
-                <form class="form-container">
+                <form class="form-container" method="post" action="/login">
                     <label>Email Address:</label><br>
-                    <input><br>
+                    <input type="email" autocomplete="email" name="Email" id="Email"><br>
                     <label>Password:</label><br>
-                    <input><br>
+                    <input type="password" autocomplete="off" name="Password" id="Password"><br>
                     <button>
                         Login
                     </button>

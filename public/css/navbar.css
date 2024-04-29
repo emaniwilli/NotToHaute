@@ -4,6 +4,7 @@
       overflow: hidden;
       background-color: #fff;
       font-family:  "Nunito Sans", sans-serif;
+      z-index: 1;
     }
     
   /* Links inside the navbar */
@@ -18,8 +19,9 @@
 
   /*Dropdown styling*/
   .dropdown {
-      float: left;
-      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      z-index: 2;
     }
 
   .dropdown .dropdown-button {
@@ -35,11 +37,11 @@
 
   .dropdown-content {
       display: none;
-      position: static;
-      left: 0;
+      position: absolute;
       background-color: #fff;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 999;
     }
 
   .dropdown-content a {
@@ -61,18 +63,18 @@
 
   /*Split navbar styling*/
   .split-left {
-      float: left;
+    float: left;
+}
+
+.split-right {
+    float: right;
+    background-color: #fff;
+    color: #432818;
   }
 
-  .split-right {
-      float: right;
-      background-color: #fff;
-      color: #432818;
-    }
-
-  .center-logo {
-    align-self: center;
-  }
+.center-logo {
+  align-self: center;
+}
 
   /*Expanding search bar*/
   .search-bar {

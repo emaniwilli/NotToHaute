@@ -1,13 +1,15 @@
 const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
 
 const usersSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     FirstName: {
-        type: String
+        type: String,
+        required: true
     },
     LastName: {
-        type: String
+        type: String,
+        required: true
     },
     Email: {
         type: String,
@@ -27,24 +29,25 @@ const usersSchema = mongoose.Schema({
         required: false,
     },
     wishlistID: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Wishlist"
     },
     cartID: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Cart"
     },
     Admin: {
         type: Boolean,
         required: true
     },
     createdAt: {
-        type: Date,
-        default: Date.now()
+        type: Timestamp,
     },
     updatedAt: {
-        type: Date,
-        default: Date.now()
+        type: Timestamp,
     }
 });
 
-usersSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Users', usersSchema);

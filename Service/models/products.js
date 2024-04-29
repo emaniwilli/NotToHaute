@@ -2,8 +2,9 @@ const { Decimal128, Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 
 const productsSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     ProductImages: {
-        type: Array,
+        type: String,
         required: true
     },
     BrandName: {
@@ -31,7 +32,7 @@ const productsSchema = mongoose.Schema({
         required: true
     },
     ProductColors: {
-        type: String,
+        type: Array,
         required: false
     },
     InventoryStock: {
@@ -42,17 +43,17 @@ const productsSchema = mongoose.Schema({
         type: Array,
         required: false
     },
-    ProductLDescription: {
+    ProductDescription: {
         type: String,
         required: false
     },
     CreatedAt: {
         type: Date,
-        default: Date.now()
+        required: true
     },
     UpdatedAt: {
         type: Date,
-        default: Date.now()
+        required: true
     }
 });
 

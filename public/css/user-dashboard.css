@@ -1,0 +1,34 @@
+/*General page styling*/
+body {
+    font-family: "Nunito Sans", sans-serif;
+    color: #432818;
+}
+
+.profile {
+    display: flex;
+    align-content: center;
+    margin: 5vw;
+    border: #432818;
+    border-width: 2px;
+    border-style: solid;
+    height: auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.demographics {
+    align-items: center;
+}
+
+h4, label {
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    text-align: left;
+}
+
+
+
+

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const wishlistSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     WishlistQuantity: {
         type: String,
         required: true
