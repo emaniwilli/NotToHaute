@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Not to Haute: Where Style Meets Luxury</title>
-        
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
     </div>
     <!--Webpage Content-->
         <div class="form">
+        <!--<form action="" method="post">-->
             <input type="text" name="BrandName" id="brandName" placeholder="Brand Name">
             <input type="text" name="ProductName" id="productName" placeholder="Product Name">
             <textarea name="ProductLDescription" id="longDescription" placeholder="Enter a detailed product description"></textarea>
@@ -38,16 +39,8 @@
                           Upload Images
                     </p>
                     <div class="image-collection">
-                        <input type="file" class="fileUpload" name="ProductImages" id="thumbnailImage" hidden>
-                        <label for="thumbnailImage" class="imageUpload"></label>
-                        <input type="file" class="fileUpload" name="ProductImages" id="secondImage" hidden>
-                        <label for="secondImage" class="imageUpload"></label>
-                        <input type="file" class="fileUpload" name="ProductImages" id="thirdImage" hidden>
-                        <label for="thirdImage" class="imageUpload"></label>
-                        <input type="file" class="fileUpload" name="ProductImages" id="fourthImage" hidden>
-                        <label for="fourthImage" class="imageUpload"></label>
-                        <input type="file" class="fileUpload" name="ProductImages" id="fifthImage" hidden>
-                        <label for="fifthImage" class="imageUpload"></label>
+                        <input type="file" class="fileUpload" name="ProductImages" id="Image" hidden>
+                        <label for="Image" class="imageUpload"></label>
                     </div>
                 </div>
                 <div class="size-selection">
@@ -86,6 +79,7 @@
                 <button class="btn" id="add">Add Product</button>
                 <button class="btn" id="save">Save Product Draft</button>
             </div>
+        <!--</form>-->
         </div>
     <script src="../public/admin-addproduct.js"></script>
     </body>

@@ -83,43 +83,66 @@
         </div>
         </nav>
     <!--Webpage Content-->
+    <div class="sidenav">
         <h4>Account Details:</h4>
         <table>
                 <form>
                     <tr class="firstname">
                         <td><label name="FirstName">First Name:</label></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" name="FirstName" placeholder="value"></td>
                     </tr>
                     <tr class="lastname">
                         <td><label name="LastName">Last Name:</label></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" name="LastName" placeholder="value"></td>
                     </tr>
                     <tr class="email">
                         <td><label name="Email">Email: </label></td>
-                        <td><input type="email"><br></td>
+                        <td><input type="email" name="Email" placeholder="value"><br></td>
                     </tr>
                     <tr class="Address">
                         <td><label name="Address">Address: </label></td>
                         <td>
-                            <input type="text" placeholder="Address Line 1"><br>
-                            <input type="text" placeholder="Address Line 2"><br>
-                            <input type="text" placeholder="City"><br>
-                            <input type="text" placeholder="State"><br>
-                            <input type="text" placeholder="Zip Code"><br>
+                            <input type="text" name="Address" placeholder="Address Line 1"><br>
+                            <input type="text" name="Address" placeholder="Address Line 2"><br>
+                            <input type="text" name="Address" placeholder="City"><br>
+                            <input type="text" name="Address" placeholder="State"><br>
+                            <input type="text" name="Address" placeholder="Zip Code"><br>
                         </td>
                     </tr>
                     <tr class="Phone">
                         <td><label name="Phone">Phone Number: </label></td>
-                        <td><input type="tel" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
+                        <td><input type="tel" name="Phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
                     </tr>
                     <tr class="password">
                         <td><label name="Password">Change Password: </label></td>
                         <td>
-                            <input type="password" placeholder="New Password"><br>
+                            <input name="Password" type="password" placeholder="New Password"><br>
                             <input type="password" placeholder="Confirm New"><br>
                         </td>
                     </tr>
                 </form>
         </table>
+        <h4>Payment Methods</h4>
+        <table>
+            <form>
+                <tr class="cardNumber">
+                    <td><label name="cardNumber">Card Number</label></td>
+                    <td><input type="number"></td>
+                </tr>
+                <tr class="expiration">
+                    <td><label name="expiration">Expiration Date</label></td>
+                    <td><input type="month" min="2024-05"></td>
+                </tr>
+                <tr class="csv">
+                    <td><label name="csv">CSV</label></td>
+                    <td><input type="number"></td>
+                </tr>
+                <tr class="zipCode">
+                    <td><label name="zip">Zip Code</label></td>
+                    <td><input type="number"></td>
+                </tr>
+            </form>
+        </table>
+        <button>Logout</button>
     </body>
 </html> 

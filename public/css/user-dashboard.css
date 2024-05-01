@@ -4,20 +4,22 @@ body {
     color: #432818;
 }
 
-.profile {
-    display: flex;
-    align-content: center;
-    margin: 5vw;
-    border: #432818;
-    border-width: 2px;
-    border-style: solid;
-    height: auto;
-    flex-direction: column;
-    flex-wrap: wrap;
+table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
 }
 
-.demographics {
-    align-items: center;
+tr {
+    column-width: 100px;
+    text-align: center;
+}
+
+td, input {
+    column-width: 300px;
+    width: 300px;
+    text-align: justify;
+    border-style: none;
 }
 
 h4, label {
@@ -25,10 +27,12 @@ h4, label {
     margin: 20px;
 }
 
-input {
-    text-align: left;
+button {
+    background: #432818;
+    color: #fff;
+    border-style: none;
+    border-radius: 5px;
 }
-
 
 
 

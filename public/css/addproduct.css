@@ -84,7 +84,7 @@ textarea {
 
 .imageUpload {
     width: 100%;
-    height: 100px;
+    height: 50px;
     background: #e8e8e8;
     cursor: pointer;
     background-size: cover;

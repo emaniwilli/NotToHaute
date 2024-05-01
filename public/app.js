@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const MongoDBSession = require('connect-mongodb-session')(session);
+const cloudinary = require('@cloudinary/url-gen');
 
 //.env variables
 const secret_key = process.env.SECRET_KEY;
@@ -33,21 +34,20 @@ app.use(morgan('dev'));
 //User authentication using ejs and passport modules
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended : true }));
+
+
+//creating a session
+const storeSession = new MongoDBSession({
+    uri: process.env.DATABASE_URI,
+    collection: "userSessions"
+})
+
 app.use(session ({
     secret: secret_key,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: storeSession
 }));
-
-//initializing passport
-app.use(passport.initialize());
-
-//starting passport session
-app.use(passport.session());
-
-passport.use(Users.createStrategy());
-passport.serializeUser(Users.serializeUser());
-passport.deserializeUser(Users.deserializeUser());
 
 //Routes handling requests
 app.use('/users', usersRouter);
