@@ -24,6 +24,12 @@ input, textarea {
     font-weight: 500;
 }
 
+.quick-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
 input:not(input[type="checkbox"]) {
     width: 100%;
 }
@@ -84,7 +90,7 @@ textarea {
 
 .imageUpload {
     width: 100%;
-    height: 50px;
+    height: 75px;
     background: #e8e8e8;
     cursor: pointer;
     background-size: cover;
