@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../public/css/navbar.css">
-        <link rel="stylesheet" href="../public/css/user-dashboard.css">
+        <link rel="stylesheet" href="../public/css/admin-login.css">
     </head>
     <body>
     <!--Navbar-->
@@ -68,7 +68,7 @@
                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
                     </svg>
                 </a>
-                <a href="/user-dashboard">
+                <a href="/login">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
@@ -82,72 +82,22 @@
             </div>
         </div>
         </nav>
-    <!--Webpage Content-->
-        <h4>Account Details:</h4>
-        <table>
-                <form action="/user-dashboard" method="post">
-                    <tr class="firstname">
-                        <td><label name="FirstName">First Name:</label></td>
-                        <td><input type="text" name="FirstName" placeholder="<%= user.FirstName %>"></td>
-                    </tr>
-                    <tr class="lastname">
-                        <td><label name="LastName">Last Name:</label></td>
-                        <td><input type="text" name="LastName" placeholder="<%= user.LastName %>"></td>
-                    </tr>
-                    <tr class="email">
-                        <td><label name="Email">Email: </label></td>
-                        <td><input type="email" name="Email" placeholder="<%= user.Email %>"><br></td>
-                    </tr>
-                    <tr class="Address">
-                        <td><label name="Address">Address: </label></td>
-                        <td>
-                            <input type="text" class="address" name="Address" placeholder="<%= user ? user.Address : 'Address Line 1' %>"><br>
-                            <input type="text" class="address" name="Address" placeholder="<%= user ? user.Address : 'Address Line 2' %>"><br>
-                            <input type="text" class="address" name="Address" placeholder="<%= user ? user.Address : 'City' %>"><br>
-                            <input type="text" class="address" name="Address" placeholder="<%= user ? user.Address : 'State' %>"><br>
-                            <input type="text" class="address" name="Address" placeholder="<%= user ? user.Address : 'Zip Code' %>"><br>
-                        </td>
-                    </tr>
-                    <tr class="Phone">
-                        <td><label name="Phone">Phone Number: </label></td>
-                        <td><input type="tel" class="phone" name="Phone" placeholder="<%= user ? user.Phone : '123-456-7890' %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
-                    </tr>
-                    <tr class="password">
-                        <td><label name="Password">Change Password: </label></td>
-                        <td>
-                            <input name="Password" type="password" placeholder="<%= user.Password %>">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button>
-                                Submit
-                            </button>
-                        </td>
-                    </tr>
+          <!--Webpage content-->
+          <section>
+            <div class="login">
+                <h4 class="main-heading">
+                    Log into your account:
+                </h4>
+                <form class="form-container" method="post" action="/admin/login">
+                    <label>Email Address:</label><br>
+                    <input type="email" autocomplete="email" name="Email" id="Email"><br>
+                    <label>Password:</label><br>
+                    <input type="password" autocomplete="off" name="Password" id="Password"><br>
+                    <button>
+                        Login
+                    </button>
                 </form>
-        </table>
-        <h4>Payment Methods</h4>
-        <table>
-            <form>
-                <tr class="cardNumber">
-                    <td><label name="cardNumber">Card Number</label></td>
-                    <td><input type="number"></td>
-                </tr>
-                <tr class="expiration">
-                    <td><label name="expiration">Expiration Date</label></td>
-                    <td><input type="month" min="2024-05"></td>
-                </tr>
-                <tr class="csv">
-                    <td><label name="csv">CSV</label></td>
-                    <td><input type="number"></td>
-                </tr>
-                <tr class="zipCode">
-                    <td><label name="zip">Zip Code</label></td>
-                    <td><input type="number"></td>
-                </tr>
-            </form>
-        </table>
-        <button>Logout</button>
+            </div>
+          </section>
     </body>
-</html> 
+</html>

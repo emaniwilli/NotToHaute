@@ -1,4 +1,3 @@
-const { Decimal128, Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 
 const productsSchema = mongoose.Schema({
@@ -15,16 +14,13 @@ const productsSchema = mongoose.Schema({
         required: true
     },
     ProductPrice: {
-        type: Decimal128,
+        type: String,
         required: true
     },
     SKU: {
         type: String,
-        required: true
-    },
-    ProductCategory: {
-        type: String,
-        required: true
+        required: true,
+        unique: true
     },
     ProductSizes: {
         type: Array,

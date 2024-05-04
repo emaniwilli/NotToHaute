@@ -4,8 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../public/css/admin-dashboard.css">
+    <!--<link rel="stylesheet" href="../public/css/product-card.css">-->
 </head>
 <body>
-    
+    <!--Logo: Admin page won't have navbar-->
+    <div class="nth-Logo">
+        <a href="/"><img src="../public/images/NTH navbar logo.png"></a>
+    </div>
+    <!--Webpage Content-->
+    <div class="add-product-header">
+        <p class="text" id="admin-intro">Welcome, <%= user ? user.FirstName : 'Guest' %></p>
+        <a href="/admin/addproduct" class="add-product">Add Product</a>
+    </div>
+    <h1 class="no-product-text">No Products Available</h1>
+    <section class="admin-products">
+        <div class="product-container">
+            <!--Adding products here-->
+        </div>
+    </section>
+    <!--JavaScript-->
+    <script src="../public/admin-dashboard.js"></script>
+    <script src="../public/createProducts.js"></script>
+
 </body>
 </html>

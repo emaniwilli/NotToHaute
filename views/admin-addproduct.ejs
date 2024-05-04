@@ -10,7 +10,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../public/css/navbar.css">
         <link rel="stylesheet" href="../public/css/addproduct.css">
     </head>
     <body>
@@ -20,10 +19,11 @@
     </div>
     <!--Webpage Content-->
         <div class="form">
-        <!--<form action="" method="post">-->
+        <form action="/admin/addproduct" method="post">
             <div class="quick-info">
             <input type="text" name="BrandName" id="brandName" placeholder="Brand Name">
             <input type="text" name="ProductName" id="productName" placeholder="Product Name">
+            <input type="text" name="SKU" id="sku" placeholder="SKU">
             </div>
             <textarea name="ProductLDescription" id="longDescription" placeholder="Enter a detailed product description"></textarea>
             <!--Product image section-->
@@ -78,10 +78,9 @@
                 </div>
             </div>
             <div class="buttons">
-                <button class="btn" id="add">Add Product</button>
-                <button class="btn" id="save">Save Product Draft</button>
+                <button type="button" class="btn" id="add">Add Product</button>
             </div>
-        <!--</form>-->
+        </form>
         </div>
     <script src="../public/admin-addproduct.js"></script>
     </body>

@@ -15,11 +15,19 @@ tr {
     text-align: center;
 }
 
-td, input {
+td {
     column-width: 300px;
     width: 300px;
     text-align: justify;
-    border-style: none;
+}
+
+input {
+    column-width: 300px;
+    width: 300px;
+    text-align: justify;
+    border-style:hidden;
+    border-color: #b4b4b4;
+    border-width: 0.2px;
 }
 
 h4, label {
@@ -28,11 +36,22 @@ h4, label {
 }
 
 button {
+    margin-left: 100%;
     background: #432818;
     color: #fff;
     border-style: none;
     border-radius: 5px;
 }
 
+.address, .phone {
+    border-style: hidden;
+}
+
+.address:hover, .phone:hover {
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-width: 0.2px;
+    border-radius: 5px;
+}
 
 
