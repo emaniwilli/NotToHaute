@@ -75,6 +75,11 @@ app.post("/login", async (req, res) => {
             console.log('User not found')
             return res.redirect('/login');
         }
+
+        if (user.Admin) {
+            console.log('Admin cannot sign in as user');
+            return res.redirect('/login')
+        }
     
         const userAuth = await bcrypt.compare(Password, user.Password);
         if(!userAuth) {
@@ -168,6 +173,24 @@ app.post('/user/addproduct', async (req, res) => {
         console.log('Product submitted successfully!')
         res.redirect('/user-dashboard');
 });
+
+app.get('/user/addproduct/:id', authenticated, (req, res) => {
+    res.render('user-addproduct');
+})
+
+app.post('/user/getproduct', authenticated, async (req, res) => {
+    try {
+        const productId = req.body.id;
+        console.log('Product ID:', productId);
+        const productData = await products.findByIdAndUpdate(productId);
+        console.log('Product Data:', productData);
+        res.json(productData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' })
+    }
+    
+})
 
 app.get("/admin/request-signup", (req, res) => {
     res.render('admin-signup');
@@ -276,14 +299,27 @@ app.post('/getproducts', adminAuthenticated, async (req, res) => {
     try {
         const productId = req.body.id;
         console.log('Product ID:', productId);
-        const productData = await products.findByIdAndUpdate(productId);
-        console.log('Product Data:', productData);
-        res.json(productData);
+
+        const { BrandName, ProductName, SKU, ProductLDescription, ProductImages, ProductSizes, ProductTags, ProductPrice, InventoryStock, ProductColors } = req.body;
+        const updateData = {
+            BrandName, 
+            ProductName, 
+            SKU, 
+            ProductLDescription, 
+            ProductImages, 
+            ProductSizes, 
+            ProductTags, 
+            ProductPrice, 
+            InventoryStock, 
+            ProductColors
+        }
+        const updatedItem = await products.findByIdAndUpdate(productId, updateData, { new: true });
+        console.log('Product Data:', updatedItem);
+        res.json(updatedItem);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' })
     }
-    
 })
 
 app.delete('/delete-product', async (req, res) => {
@@ -346,6 +382,7 @@ app.get('/retail-products/:id', async (req, res) => {
 app.get('/allproducts', async (req, res) => {
     try {
         const displayAll = await products.find({ adminSubmit: true });
+        console.log('Displaying products:', displayAll)
         res.render('retail-product-all', { products: displayAll }); 
     } catch (error) {
     console.error('Error fetching products', error);
