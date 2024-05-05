@@ -119,8 +119,8 @@ app.get("/user-dashboard", authenticated, (req, res) => {
 });
 
 //user dashboard
-app.post("/user-dashboard", async (req, res) => {
-    const { FirstName, LastName, Email, Address, Phone, Password, } = req.body;
+app.post("/user-dashboard", authenticated, async (req, res) => {
+    const { FirstName, LastName, Email, Address, Phone, Password } = req.body;
     try{
     let user = await users.findById(req.user._id);
     
