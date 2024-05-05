@@ -1,79 +1,39 @@
-
-  /* Navbar container */
-  .navbar-top {
-      overflow: hidden;
-      background-color: #fff;
-      font-family:  "Nunito Sans", sans-serif;
-      z-index: 1;
-    }
-    
-  /* Links inside the navbar */
-  .navbar-top a {
-      float:inline-start;
-      font-size: 16px;
-      color: #432818;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-  /*Dropdown styling*/
-  .dropdown {
-      position: relative;
-      display: inline-block;
-      z-index: 2;
-    }
-
-  .dropdown .dropdown-button {
-      font-size: 16px;
-      border: none;
-      outline: none;
-      color: #432818;
-      padding: 14px 16px;
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;
-    }
-
-  .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #fff;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 999;
-    }
-
-  .dropdown-content a {
-      float: none;
-      color: #432818;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-  .dropdown-content a:hover {
-      background-color: #FFF3D4;
-    }
-    
-  .dropdown:hover .dropdown-content {
-      display: block;
-  }
-
-  /*Split navbar styling*/
-  .split-left {
-    float: left;
+body {
+  font-family: "Nunito Sans", sans-serif;
+  color: #432818;
 }
 
-.split-right {
-    float: right;
-    background-color: #fff;
-    color: #432818;
-  }
+nav {
+  background-color: #fff;
+}
+
+a {
+  color: #432818;
+  padding: 15px;
+}
+
+/* Navbar container */
+.navbar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+/*Split navbar styling*/
+.split-left, .split-right {
+    display: flex;
+    align-items: center;
+}
 
 .center-logo {
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-logo img {
+  height: 50px;
 }
 
   /*Expanding search bar*/

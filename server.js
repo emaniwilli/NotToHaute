@@ -7,8 +7,6 @@ const bodyParser = require('body-parser');
 const users = require('./public/models/users.js');
 const products = require('./public/models/products.js')
 const bcrypt = require('bcrypt');
-const { userInfo } = require('os');
-const { error } = require('console');
 
 //middleware
 app.use(bodyParser.urlencoded({extended: true}));
@@ -40,7 +38,7 @@ const adminAuthenticated = (req, res, next) => {
 
 //home(index) route
 app.get("/", (req, res) => {
-    res.sendFile('public/index.html' , { root : __dirname });
+    res.render('index');
 });
 
 //user route (login and signup)
@@ -71,6 +69,7 @@ app.post("/signup", async (req, res) => {
 //login to user account
 app.post("/login", async (req, res) => {
     try {
+        const { Email, Password } = req.body;
         const user = await users.findOne({Email});
         if(!user) {
             console.log('User not found')
@@ -140,6 +139,36 @@ app.post("/user-dashboard", async (req, res) => {
     }
     });
 
+app.get('/user/addproduct', authenticated, (req, res) => {
+    res.render('user-addproducts')
+})    
+
+app.post('/user/addproduct', async (req, res) => {
+    const { BrandName, ProductName, SKU, ProductLDescription, ProductImages, ProductSizes, ProductTags, ProductPrice, InventoryStock, ProductColors } = req.body;
+    
+    const existing = await products.findOne({SKU});
+    if (existing) {
+        console.log('Product with this SKU already exists');
+    }
+    
+    product = new products ({ 
+        BrandName, 
+        ProductName, 
+        SKU, 
+        ProductLDescription, 
+        ProductImages, 
+        ProductSizes, 
+        ProductTags, 
+        ProductPrice, 
+        InventoryStock, 
+        ProductColors,
+        adminSubmit: false
+    })
+        await product.save();
+        console.log('Product submitted successfully!')
+        res.redirect('/user-dashboard');
+});
+
 app.get("/admin/request-signup", (req, res) => {
     res.render('admin-signup');
 })
@@ -176,7 +205,7 @@ app.post("/admin/login", async (req, res) => {
 
     try {
     const user = await users.findOne({Email});
-    if(!user || !user.Admin) {
+    if(!user.Admin) {
         console.log('User not found')
         return res.redirect('/admin/login');
     }
@@ -231,16 +260,36 @@ app.post('/admin/addproduct', async (req, res) => {
     ProductTags, 
     ProductPrice, 
     InventoryStock, 
-    ProductColors })
+    ProductColors,
+    adminSubmit: true
+ })
     await product.save();
     console.log('Product submitted successfully!')
     res.redirect('/admin/dashboard');
 })
 
+app.get('/admin/addproduct/:id', adminAuthenticated, (req, res) => {
+    res.render('admin-addproduct');
+})
+
+app.post('/getproducts', adminAuthenticated, async (req, res) => {
+    try {
+        const productId = req.body.id;
+        console.log('Product ID:', productId);
+        const productData = await products.findByIdAndUpdate(productId);
+        console.log('Product Data:', productData);
+        res.json(productData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' })
+    }
+    
+})
+
 app.delete('/delete-product', async (req, res) => {
     try {
         const id = req.body.id;
-        console.log(id);
+        //console.log(id);
         const deleteProduct = await products.findByIdAndDelete(id);
 
         if (!deleteProduct) {
@@ -276,12 +325,67 @@ app.get('/admin/dashboard', adminAuthenticated, async (req, res) => {
 app.get('/admin/products', adminAuthenticated, async (req, res) => {
     try {
         const showProducts = await products.find({})
-        console.log(showProducts)
+        //console.log(showProducts)
         res.json(showProducts);
     } catch (error) {
         console.error('Error fetching products', error);
         res.status(500).json({ error: 'Server Error' });
     }
 });
+
+app.get('/retail-products/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await products.findById(id);
+        res.render('retail-products', { product: product });
+    } catch (error) {
+        console.error('Error displaying product');
+    }
+})
+
+app.get('/allproducts', async (req, res) => {
+    try {
+        const displayAll = await products.find({ adminSubmit: true });
+        res.render('retail-product-all', { products: displayAll }); 
+    } catch (error) {
+    console.error('Error fetching products', error);
+    res.status(500).json({ error: 'Server Error' });
+}
+})
+
+app.get('/marketplace/products', async (req, res) => {
+    try {
+        const displaySubmissions = await products.find({ adminSubmit: false });
+        res.render('marketplace-products', { products: displaySubmissions }); 
+    } catch (error) {
+    console.error('Error fetching products', error);
+    res.status(500).json({ error: 'Server Error' });
+}
+})
+
+app.get('/products/womenswear', async (req, res) => {
+    try {
+        const showWomens = await products.find({ ProductTags: ["womens"] });
+        res.render('womens-products'); 
+    } catch (error) {
+    console.error('Error fetching products', error);
+    res.status(500).json({ error: 'Server Error' });
+}
+})
+
+app.get('/search/:key', async (req, res) => {
+    try {
+        const searchKey = req.params.key;
+        const searchResults = await products.find({searchKey});
+        console.log(searchResults);
+    } catch(error) {
+        console.error('Error fetching product results', error);
+        res.status(500).json({ error: 'Server Error' })
+    }
+})
+
+app.get('/cart', authenticated, (req, res) => {
+    res.render('cart');
+})
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on port 3000'));

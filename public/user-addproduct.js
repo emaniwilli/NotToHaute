@@ -1,4 +1,3 @@
-
 const cloudName = 'djoho4uyj';
 const unsignedUploadPreset = 'llcl0ey5';
 let ImgUrls = [];
@@ -142,7 +141,7 @@ addBtn.addEventListener('click', async () => {
 
         if(validation()){
             let data = productData();
-                const response = fetch('/admin/addproduct', {
+                const response = fetch('/user/addproduct', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(data)
@@ -156,42 +155,5 @@ addBtn.addEventListener('click', async () => {
         } catch (error) {
             console.error('Error:', error)
         }
-        document.location = '/admin/dashboard'
+        document.location = '/user-dashboard'
 });
-
-//editing a product listing
-const fetchProductData = () => {
-    addBtn.innerHTML = 'Save';
-    fetch('/getproducts', {
-        method: 'post',
-        headers: ({'Content-Type': 'application/json'}),
-        body: JSON.stringify({ id: productId})
-    }).then(res => res.json())
-    .then(data => {
-        setFormData(data);
-    }).catch(err => console.log(err))
-}
-
-const setFormData = (data) => {
-    brandName.value = data.BrandName;
-    productName.value = data.ProductName;
-    sku.value = data.SKU;
-    longDescription.value = data.ProductLDescription;
-    ImgUrls.values = data.ProductImages;
-    const imageSection = document.getElementById('image-container');
-    data.ProductSizes.forEach(size => {
-        document.getElementById(size.toLowerCase()).checked = true;
-    });
-    data.ProductTags.forEach(tag => {
-        document.getElementById(tag.toLowerCase()).checked = true;
-    });
-    price.value = data.ProductPrice;
-    inventory.value = data.InventoryStock;
-    color.value = data.ProductColors;
-}
-
-let productId = null;
-if(location.pathname != '/admin/addproduct') {
-    productId = decodeURI(location.pathname.split('/').pop());
-    fetchProductData();
-}

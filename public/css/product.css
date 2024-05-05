@@ -15,11 +15,10 @@
     width: 500px;
     height: 700px;
     position: relative;
-    background-image: url('../public/images/Balmain\ mini\ monogram\ coat\ 1.png');
     background-size: cover;
 }
 
-.product-images {
+.product-public {
     position: absolute;
     bottom: -20px;
     left: 50%;
@@ -28,19 +27,19 @@
     background: #fff;
     border-radius: 5px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     height: 10px;
     padding: 5px;
 }
 
-.product-images img{
+.product-public img{
     width: 100%;
     height: 80px;
     object-fit: cover;
     cursor: pointer;
 }
 
-.product-images img.active {
+.product-public img.active {
     opacity: 0.5;
 }
 

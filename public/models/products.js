@@ -19,8 +19,7 @@ const productsSchema = mongoose.Schema({
     },
     SKU: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     ProductSizes: {
         type: Array,
@@ -49,6 +48,10 @@ const productsSchema = mongoose.Schema({
     UpdatedAt: {
         type: Date,
         default: Date.now()
+    },
+    adminSubmit: {
+        type: Boolean,
+        default: true
     }
 });
 

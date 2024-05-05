@@ -19,8 +19,8 @@
     </div>
     <!--Webpage Content-->
     <div class="add-product-header">
-        <p class="text" id="admin-intro">Welcome, <%= user ? user.FirstName : 'Guest' %></p>
-        <a href="/admin/addproduct" class="add-product">Add Product</a>
+        <p class="text" id="admin-intro">Welcome to <%= user ? user.FirstName : 'Guest' %>'s Dashboard</p>
+        <a href="/admin/addproduct" class="add-product"><button> Add Product </button></a>
     </div>
     <h1 class="no-product-text">No Products Available</h1>
     <section class="admin-products">
