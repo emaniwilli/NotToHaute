@@ -361,7 +361,7 @@ app.get('/admin/dashboard', adminAuthenticated, async (req, res) => {
 
 app.get('/admin/products', adminAuthenticated, async (req, res) => {
     try {
-        const showProducts = await products.find({})
+        const showProducts = await products.find({ adminSubmit: true })
         //console.log(showProducts)
         res.json(showProducts);
     } catch (error) {
