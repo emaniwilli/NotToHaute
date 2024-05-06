@@ -1,46 +1,68 @@
-const checkoutBtn = document.querySelector('.checkout');
+const calculateTotal = (cartItems) => {
+    let totalPrice = 0;
+    let totalQuantity = 0;
 
-checkoutBtn.addEventListener('click', () => {
-    let address = getAddress();
-    if (address) {
-        processPayment();
-    }
-})
+    cartItems.forEach(item => {
+        totalPrice += item.ProductPrice * item.CartQuantity;
+        totalQuantity += item.CartQuantity;
+    });
 
-const getAddress = () => {
-    let address1 = document.querySelector('#address1').value;
-    let address2 = document.querySelector('#address2').value;
-    let city = document.querySelector('#city').value;
-    let state = document.querySelector('#state').value;
-    let zip = document.querySelector('#zip').value;
+    return { totalPrice, totalQuantity };
+};
 
-    if(!address1.length || !city.length || !state.length || !zip.length) {
-        return alert('Field cannot be empty');
+const updateCartTotal = (totalPrice, totalQuantity) => {
+    const totalPriceElement = document.getElementById('cart-total-price');
+    if (totalPriceElement) {
+        totalPriceElement.textContent = totalPrice.toFixed(2);
     } else {
-        return { address1, address2, city, state, zip }
+        console.error('Cart total price element not found');
     }
-}
 
-const processPayment = async () => {
-    const paymentData = {
-        amount: calculateTotal()
-    };
+    const totalQuantityElement = document.getElementById('cart-total-quantity');
+    if (totalQuantityElement) {
+        totalQuantityElement.textContent = totalQuantity;
+    } else {
+        console.error('Cart total quantity element not found');
+    }
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const repsponse = await fetch('/process-payment', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(paymentData)
-        });
-
-        const result = await response.json();
-
-        if(result.success) {
-            alert('Payment Successful!');
+        const response = await fetch('/cart');
+        if (response.ok) {
+            const cartData = await response.json();
+            const { totalPrice, totalQuantity } = calculateTotal(cartData);
+            updateCartTotal(totalPrice, totalQuantity);
         } else {
-            alert('Payment failed-- Please try again');
+            console.error('Failed to fetch cart data');
         }
     } catch (error) {
-        console.error('Error processing payment', error);
-        alert('We encountered an error while processing your payment. Please try again.')
+        console.error('Error fetching cart data:', error);
     }
-}
+});
+;
+
+
+const deleteBtns = document.querySelectorAll('.remove');
+deleteBtns.forEach(deleteBtn => {
+    deleteBtn.addEventListener('click', async () => {
+        const itemId = deleteBtn.dataset.itemId;
+        console.log(itemId);
+        try {
+            const response = await fetch(`/cart/delete/${itemId}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+                location.reload();
+            } else {
+                throw new Error('Failed to delete item');
+            }
+        } catch (error) {
+            console.error('Error deleting item:', error);
+            alert('Error deleting item');
+        }
+    });
+});
+

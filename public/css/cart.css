@@ -46,12 +46,9 @@ body {
 
 .item-details {
     padding-top: 10px;
-    padding-right: 30px;
+    padding-right: 40px;
+    max-width: 30%;
     margin-left: auto;
-}
-
-.item-details h3 {
-    margin: 0;
 }
 
 .checkout-container {
@@ -107,4 +104,14 @@ body {
     margin: 10px;
     border-width: 0.2px;
     border-radius: 5px;
+}
+
+.decrease, .increase {
+    border: none;
+    height: 30px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
 }

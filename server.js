@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const users = require('./public/models/users.js');
 const products = require('./public/models/products.js')
 const bcrypt = require('bcrypt');
+const cart = require('./public/models/cart.js');
 
 //middleware
 app.use(bodyParser.urlencoded({extended: true}));
@@ -402,27 +403,70 @@ app.get('/marketplace/products', async (req, res) => {
 
 app.get('/products/womenswear', async (req, res) => {
     try {
-        const showWomens = await products.find({ ProductTags: ["womens"] });
-        res.render('womens-products'); 
+        const showWomens = await products.find({ ProductTags: 'womens' }).toArray();
+        res.render('womens-products', { products: showWomens }); 
     } catch (error) {
     console.error('Error fetching products', error);
     res.status(500).json({ error: 'Server Error' });
 }
 })
 
-app.get('/search/:key', async (req, res) => {
+app.get('/cart', authenticated, async (req, res) => {
     try {
-        const searchKey = req.params.key;
-        const searchResults = await products.find({searchKey});
-        console.log(searchResults);
-    } catch(error) {
-        console.error('Error fetching product results', error);
-        res.status(500).json({ error: 'Server Error' })
+        const cartProducts = await cart.find({});
+        console.log(cartProducts);
+        if (req.xhr){
+            res.json(cartProducts);
+        } else {
+            res.render('cart', { cart: cartProducts });
+        }
+    } catch (error) {
+        console.error('Error fetching cart:', error);
+        res.status(500).json({ error: 'Server error' })
     }
 })
 
-app.get('/cart', authenticated, (req, res) => {
-    res.render('cart');
+app.post('/cart/add', authenticated, async (req, res) => {
+    try {
+        const { productId, ThumbnailImage, BrandName, ProductName, ProductPrice, ProductSize, CartQuantity, CartTotal } = req.body;
+        const cartProduct = new cart ({
+            ProductID: productId,
+            ThumbnailImage,
+            BrandName,
+            ProductName,
+            ProductPrice,
+            ProductSize,
+            CartQuantity,
+            CartTotal,
+            UserId: req.user._id
+        });
+        await cartProduct.save();
+
+        req.session.cart = req.session.cart || [];
+        req.session.cart.push(cartProduct);
+
+        res.status(200).json({ message: 'Product added to cart!' })
+        } catch (error) {
+            console.error('Error adding product:', error);
+            res.status(500).json({ error: 'Server error' })
+        }  
+})
+
+app.delete('/cart/delete/:id', authenticated, async (req, res) => {
+    try {
+        const id = req.params.id;
+        //console.log(id);
+        const deleteItem = await cart.findByIdAndDelete(id);
+
+        if (!deleteItem) {
+            res.status(404).json({ error: 'Product not found' })
+        } else {
+            res.json({ message: 'Product Successfully Deleted' })
+        }
+    } catch (error) {
+        console.error('Error deleting product', error);
+        res.status(500).json({ error: 'Internal server error' })
+    }
 })
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on port 3000'));

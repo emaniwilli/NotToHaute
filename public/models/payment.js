@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const paymentSchema = mongoose.Schema({
-    UserID: {
-        type: String,
-        required: true
-    },
     NameOnCard: {
         type: String,
         required: true
@@ -18,6 +14,21 @@ const paymentSchema = mongoose.Schema({
         required: true
     },
     CVV: {
+        type: String,
+        required: true
+    },
+    addressLn1: {
+        type: String,
+        required: true
+    },
+    addressLn2: {
+        type: String
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
         type: String,
         required: true
     },

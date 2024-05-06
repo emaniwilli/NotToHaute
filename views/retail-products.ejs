@@ -15,33 +15,18 @@
     </head>
     <body>
     <!--Navbar-->
-<nav>
-    <div class="navbar-container">
+    <nav>
+        <div class="navbar-top">
         <div class="split-left">
-            <div class="products">
-                <a href="#products">Retail</a>
-                <a href="#marketplace">Marketplace</a>
-            </div>
-            <div class="search-bar">
-                <form action="/search" method="get">
-                    <input class="search" id="search-left" type="search" name="search" placeholder="Search">
-                    <label class="button search-button" for="search-left"><span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                        </svg>
-                    </span></label>
-                </form>
+            <div class="dropdown">
+                <a href="/allproducts">Retail</a>
+                <a href="/marketplace/products">Marketplace</a>
             </div>
         </div>
         <div class="center-logo">
             <a href="/" class="split-center"><img src="../public/images/NTH navbar logo.png" height="50px" width="100px"></a>
         </div>
         <div class="split-right">
-            <a href="/wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
-                </svg>
-            </a>
             <a href="/login">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -55,14 +40,14 @@
             </a>
         </div>
     </div>
-</nav>
+    </nav>
     <!--Webpage content-->
     <section class="product-visuals">
         <div class="img-view" style="background-image: url('<%= product.ProductImages[0] %>')">
             <div class="product-public">
                 <% if (product.ProductImages && product.ProductImages.length > 0) { %>
                     <% for (let i = 0; i < Math.min(5, product.ProductImages.length); i++) { %>
-                        <img src="<%= product.ProductImages[i] %>" class="<%= i === 0 ? 'active' : '' %>" alt="">
+                        <img src="<%= product.ProductImages[i] %>" class="<%= i === 0 ? 'active' : '' %>" alt="" id="product-img">
                    <% } %>
                 <% } %>
             </div>
@@ -87,7 +72,6 @@
             
             <div class="product-actions">
             <button class="btn cart-btn">add to cart</button>
-            <button class="btn">add to wishlist</button>
             </div>
 
             <div class="prod-description">

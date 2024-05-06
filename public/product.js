@@ -23,44 +23,6 @@ sizeBtns.forEach((item, i) => {
     })
 })
 
-const addToCart = () => {
-    const productBrand = '<%= product.BrandName %>';
-    const productName = '<%= product.ProductName %>';
-    const productPrice = '<%= product.ProductPrice %>';
-    const productSize = document.querySelector('input[name = "size"]:checked').value;
-
-    const cartProduct = {
-        brand: productBrand,
-        name: productName,
-        price: productPrice,
-        size: productSize
-    };
-
-    console.log('Item added to cart:', cartProduct);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const addToCartBtn = document.querySelector('.cart-btn');
-
-    if(addToCartBtn) {
-        addToCartBtn.addEventListener('click', () => {
-            const productBrand = '<%= product.BrandName %>';
-            const productName = '<%= product.ProductName %>';
-            const productPrice = '<%= product.ProductPrice %>';
-            const productSize = document.querySelector('input[name = "size"]:checked').value;
-
-            const cartProduct = {
-                brand: productBrand,
-                name: productName,
-                price: productPrice,
-                size: productSize
-            };
-            console.log('Add to cart button clicked');
-        })
-    } else {
-        console.error('Add to cart button not found');
-    }
-});
 
 //populating database data into product page
 let productImage = document.querySelector('.product-public img');
@@ -97,3 +59,66 @@ if(location.pathname != '/retail-products') {
     productId = decodeURI(location.pathname.split('/').pop());
     fetchProductData();
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartTotalPrice = document.getElementById('cart-total-price');
+    console.log(cartTotalPrice);
+
+    const addToCartBtn = document.querySelector('.cart-btn');
+    if(addToCartBtn) {
+        addToCartBtn.addEventListener('click', async (data) => {
+            try {
+                const productBrand = document.querySelector('.product-brand').textContent;
+                const productName = document.querySelector('.product-description-short').textContent;
+                const productPrice = document.querySelector('.product-price').textContent;
+                const productSize = document.querySelector('input[name = "size"]:checked').value;
+                
+                const prodImg = document.querySelector('.product-public img');
+                const thumbnailImg = prodImg ? prodImg.src : '';
+               
+                let quantity = 1;
+
+                const cartProduct = {
+                    id: productId, 
+                    img: thumbnailImg,
+                    brand: productBrand,
+                    name: productName,
+                    price: productPrice,
+                    size: productSize,
+                    quantity
+                };
+            
+            
+                const response = await fetch('/cart/add', {
+                    method: 'post',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        productId,
+                        ThumbnailImage: thumbnailImg,
+                        BrandName: productBrand,
+                        ProductName: productName,
+                        ProductPrice: productPrice,
+                        ProductSize: productSize,
+                        CartQuantity: quantity
+                    })
+                })
+
+            console.log('Add to cart button clicked', cartProduct);
+            
+            if (response.ok) {
+                const data = await response.json();
+                alert('Product Added Successfully!')
+                console.log(data.message);
+            } else {
+                console.error('Failed to add product');
+            }
+        } catch (error) {
+            console.error('Error adding product', error)
+        }
+        })
+    } else {
+        console.error('Add to cart button not found');
+    }
+});
+

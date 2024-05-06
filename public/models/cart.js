@@ -2,7 +2,7 @@ const { Decimal128 } = require('mongodb');
 const mongoose = require('mongoose');
 
 const cartSchema = mongoose.Schema({
-    /*ProductID: {
+    ProductID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Products"        
     },
@@ -19,12 +19,8 @@ const cartSchema = mongoose.Schema({
         required: true
     },
     ProductPrice: {
-        type: Decimal128,
-        required:true
-    },
-    ProductColor: {
         type: String,
-        required: true
+        required:true
     },
     ProductSize: {
         type: String,
@@ -36,26 +32,6 @@ const cartSchema = mongoose.Schema({
     },
     CartTotal: {
         type: String,
-        required: true
-    },*/
-    addressLn1: {
-        type: String,
-        required: true
-    },
-    addressLn2: {
-        type: String
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    state: {
-        type: String,
-        required: true
-    },
-    zipCode: {
-        type: String,
-        required: true
     },
     CreatedAt: {
         type:Date,

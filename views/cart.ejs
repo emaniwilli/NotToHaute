@@ -18,35 +18,20 @@
         <div class="split-left">
             <div class="dropdown">
                 <a href="/allproducts">Retail</a>
-                <a href="#marketplace">Marketplace</a>
-            </div>
-            <div class="search-bar">
-                <form action="/search" method="get">
-                    <input class="search" id="search-left" type="search" name="search" placeholder="Search">
-                    <label class="button search-button" for="search-left"><span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                        </svg>
-                    </span></label>
-                </form>
+                <a href="/marketplace/products">Marketplace</a>
             </div>
         </div>
         <div class="center-logo">
             <a href="/" class="split-center"><img src="../public/images/NTH navbar logo.png" height="50px" width="100px"></a>
         </div>
         <div class="split-right">
-            <a href="#wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
-                </svg>
-            </a>
             <a href="/login">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                 </svg>
             </a>
-            <a href="cart.html">
+            <a href="/cart">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                 </svg>
@@ -59,34 +44,35 @@
     <div class="cart-container">
         <h1>Shopping Cart</h1>
         <div class="cart">
+            <% cart.forEach(item => { %>
             <div class="item">
-                    <img src="/public/images/Balmain mini monogram coat 1.png" alt="">
+                    <img src="<%= item.ThumbnailImage %>" alt="">
                 <div class="quantity">
-                    <p class="size">Size: S</p>
+                    <p class="size">Size: <%= item.ProductSize %> </p>
                     <button class="decrease">-</button>
-                    <p class="item-quantity">1</p>
+                    <p class="item-quantity"><%= item.CartQuantity %></p>
                     <button class="increase">+</button>
                 </div>
                 <div class="item-details">
-                    <h3 class="product-name">Mini Trench Coat</h3>
-                    <h4 class="product-brand">Balmain
-                        <button class="remove">
+                    <h3 class="product-name"><%= item.ProductName %></h3>
+                    <h4 class="product-brand"><%= item.BrandName %>
+                        <button class="remove" data-item-id="<%= item._id %>">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                             </svg>
                         </button>
                     </h4>
-                    <p class="product-price">$8000</p>
-                </div>
+                    <p class="product-price">$<%= item.ProductPrice %></p>
+                </div>   
             </div>
-            
+            <% }); %> 
             <!-- Add more items here -->
         </div>
     </div>
     <div class="checkout-container">
         <div class="total">
-            <h2 class="cart-header">Total:</h2>
-            <h4 class="cart-price">Price</h4>
+            <h2 class="cart-total">Total: $<span id="cart-total-price"></span></h2>
+            <h4 class="cart-quantity">Quantity:<span id="cart-total-quantity"></span></h4>
             <button class="checkout">Checkout</button>
         </div>
     </div>
@@ -101,5 +87,6 @@
         <input type="text" id="zip" placeholder="Zip">
     </div>
     <script src="/public/cart.js"></script>
+    <!--<script src="/public/checkout.js"></script>-->
 </body>
 </html>
