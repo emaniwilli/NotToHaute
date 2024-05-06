@@ -44,14 +44,21 @@
     <div class="cart-container">
         <h1>Shopping Cart</h1>
         <div class="cart">
+            <% 
+            let totalQuantity = 0;
+            let totalPrice = 0;
+            cart.forEach(item => {
+                console.log("Item Price:", item.ProductPrice);
+                totalQuantity += parseInt(item.CartQuantity);
+                totalPrice += parseFloat(item.ProductPrice.replace('$','')) * parseInt(item.CartQuantity)
+            })
+            %>
             <% cart.forEach(item => { %>
             <div class="item">
                     <img src="<%= item.ThumbnailImage %>" alt="">
                 <div class="quantity">
                     <p class="size">Size: <%= item.ProductSize %> </p>
-                    <button class="decrease">-</button>
-                    <p class="item-quantity"><%= item.CartQuantity %></p>
-                    <button class="increase">+</button>
+                    <p class="item-quantity">Qty: <%= item.CartQuantity %></p>
                 </div>
                 <div class="item-details">
                     <h3 class="product-name"><%= item.ProductName %></h3>
@@ -71,22 +78,29 @@
     </div>
     <div class="checkout-container">
         <div class="total">
-            <h2 class="cart-total">Total: $<span id="cart-total-price"></span></h2>
-            <h4 class="cart-quantity">Quantity:<span id="cart-total-quantity"></span></h4>
+            <h2 class="cart-total">Total: $<span id="cart-total-price"><%= totalPrice %></span></h2>
+            <h4 class="cart-quantity">Quantity:<span id="cart-total-quantity"><%= totalQuantity %></span></h4>
             <button class="checkout">Checkout</button>
         </div>
     </div>
     <div class="checkout-info">
         <h2 class="heading">Checkout</h2>
-        <h4 class="full-address">Delivery Address</h4>
+        <h4 class="subheading">Delivery Address</h4>
     
         <input type="text" id="address1" placeholder="Address Line 1">
         <input type="text" id="address2" placeholder="Address Line 2">
         <input type="text" id="city" placeholder="City">
         <input type="text" id="state" placeholder="State">
         <input type="text" id="zip" placeholder="Zip">
+
+        <h4 class="subheading">Payment Details</h4>
+        <input type="text" id="fullName" placeholder="Name on File">
+        <input type="text" id="cardNumber" placeholder="Card Number">
+        <input type="text" id="cvv" placeholder="CVV">
+        <input type="text" id="zipCode" placeholder="Zip">
+
     </div>
     <script src="/public/cart.js"></script>
-    <!--<script src="/public/checkout.js"></script>-->
+    <script src="/public/checkout.js"></script>
 </body>
 </html>

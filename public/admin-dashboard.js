@@ -4,7 +4,6 @@ const createProducts = () => {
     fetch('/admin/products', {
         method: 'get',
         headers: {'Content-Type': 'application/json'},
-        //body: JSON.stringify({email : users.Email})
     })
     .then(res => res.json())
     .then(data => {

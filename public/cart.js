@@ -1,46 +1,37 @@
-const calculateTotal = (cartItems) => {
-    let totalPrice = 0;
-    let totalQuantity = 0;
-
-    cartItems.forEach(item => {
-        totalPrice += item.ProductPrice * item.CartQuantity;
-        totalQuantity += item.CartQuantity;
-    });
-
-    return { totalPrice, totalQuantity };
-};
-
-const updateCartTotal = (totalPrice, totalQuantity) => {
-    const totalPriceElement = document.getElementById('cart-total-price');
-    if (totalPriceElement) {
-        totalPriceElement.textContent = totalPrice.toFixed(2);
-    } else {
-        console.error('Cart total price element not found');
-    }
-
-    const totalQuantityElement = document.getElementById('cart-total-quantity');
-    if (totalQuantityElement) {
-        totalQuantityElement.textContent = totalQuantity;
-    } else {
-        console.error('Cart total quantity element not found');
-    }
-};
-
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/cart');
+        const response = await fetch('/cart', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
         if (response.ok) {
             const cartData = await response.json();
+            console.log('Cart Data:', cartData); // Debugging
             const { totalPrice, totalQuantity } = calculateTotal(cartData);
+            console.log('Total Price:', totalPrice); // Debugging
+            console.log('Total Quantity:', totalQuantity); // Debugging
             updateCartTotal(totalPrice, totalQuantity);
+            updateCheckoutContainer(totalPrice, totalQuantity);
         } else {
-            console.error('Failed to fetch cart data');
+            console.error('Failed to fetch cart data:', response.statusText);
         }
     } catch (error) {
         console.error('Error fetching cart data:', error);
     }
 });
-;
+
+const updateCheckoutContainer = (totalPrice, totalQuantity) => {
+    const totalPriceElement = document.getElementById('cart-total-price');
+    const totalQuantityElement = document.getElementById('cart-total-quantity');
+
+    if (totalPriceElement && totalQuantityElement) {
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+        totalQuantityElement.textContent = totalQuantity;
+    } else {
+        console.error('Checkout container elements not found');
+    }
+};
+
 
 
 const deleteBtns = document.querySelectorAll('.remove');

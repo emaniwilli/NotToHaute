@@ -401,10 +401,11 @@ app.get('/marketplace/products', async (req, res) => {
 }
 })
 
-app.get('/products/womenswear', async (req, res) => {
+app.get('/products/womens', async (req, res) => {
     try {
-        const showWomens = await products.find({ ProductTags: 'womens' }).toArray();
-        res.render('womens-products', { products: showWomens }); 
+        const showWomens = await products.find({ ProductTags: womens }).toArray();
+        console.log(showWomens);
+        res.render('womens-products'); 
     } catch (error) {
     console.error('Error fetching products', error);
     res.status(500).json({ error: 'Server Error' });
